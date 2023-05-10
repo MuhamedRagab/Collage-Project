@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Clothes</title>
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/my-clothes.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h3>Welcome <span class="username">Guest</span></h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="my-clothes.html">My Clothes</a></li>
+          <li><button class="logout">Logout</button></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1 class="main__title">My Clothes</h1>
+      <section class="my-container"></section>
+    </main>
+    <footer>
+      <button class="total__button">
+        <span>Count: </span>
+        <span id="count"></span>
+      </button>
+      <button class="total__button">
+        <span>Total: </span>
+        $<span id="total"></span>
+      </button>
+    </footer>
+    <script src="../scripts/myClothes.js"></script>
+  </body>
+</html>

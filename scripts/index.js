@@ -1,0 +1,55 @@
+const container = document.querySelector(".container");
+const username = document.querySelector(".username");
+const logout = document.querySelector(".logout");
+let clothes = [];
+
+window.addEventListener("load", () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  username.innerHTML = user ? user.fullName : "Guest";
+
+  fetch("../clothes.json")
+    .then((res) => res.json())
+    .then((data) => (clothes = data))
+    .finally(() => renderData());
+});
+
+const renderData = () => {
+  clothes.forEach((item, i) => {
+    container.innerHTML += `
+        <div class="card">
+          <h2 class="card__title">${item.title}</h2>
+          <img class="card__image" src='${item.image}' alt=${item.title}</ />
+          <h3 class="card__price">$${item.price}</h3>
+          <div>
+            <button class="card__button" onclick="addCart('${i}')">Add to cart</button>
+          </div>
+        </div>
+      `;
+  });
+};
+
+function addCart(index) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const users = JSON.parse(localStorage.getItem("users"));
+
+  if (!user) {
+    alert("Please login to add to cart");
+    return;
+  }
+
+  const cart = clothes[index];
+  user.clothes.push(cart);
+
+  const indexUser = users.findIndex((item) => item.username === user.username);
+  users[indexUser] = user;
+
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Added to cart");
+}
+
+logout.addEventListener("click", () => {
+  localStorage.removeItem("user");
+  window.location.href = "login.html";
+});

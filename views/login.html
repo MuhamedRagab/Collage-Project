@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Signup Form</title>
+    <!--* Styles *-->
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+    <!-- Login -->
+    <link rel="stylesheet" href="../styles/login.css" />
+    <!-- Toaster -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <section class="wrapper sign-wrapper">
+      <div class="form signup">
+        <header>Signup</header>
+        <form>
+          <input type="text" placeholder="Full name" required />
+          <input type="text" placeholder="Username" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit" class="login-btn">Signup</button>
+        </form>
+      </div>
+
+      <div class="form login">
+        <header>Login</header>
+        <form>
+          <input type="text" placeholder="Username" required />
+          <input type="password" placeholder="Password" required />
+          <a href="forgot-password.html">Forgot password?</a>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+      </div>
+
+      <!--* Scripts *-->
+      <!-- Jquery -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js
+      "></script>
+      <!-- Toaster -->
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+      <!-- Login -->
+      <script src="../scripts/login.js"></script>
+    </section>
+  </body>
+</html>
