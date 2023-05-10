@@ -60,6 +60,17 @@
   font-weight: 600;
   color: #000;
 }
+.my-card__price input {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  outline: none;
+  padding: 0 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
 .my-card__button {
   padding: 10px 25px;
   border-radius: 5px;

@@ -5,7 +5,8 @@ let clothes = [];
 
 window.addEventListener("load", () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  username.innerHTML = user ? user.fullName : "Guest";
+
+  if (!user) location.href = "views/login.html";
 
   fetch("../clothes.json")
     .then((res) => res.json())
@@ -32,13 +33,16 @@ function addCart(index) {
   const user = JSON.parse(localStorage.getItem("user"));
   const users = JSON.parse(localStorage.getItem("users"));
 
-  if (!user) {
-    alert("Please login to add to cart");
-    return;
-  }
+  const clotheExist = user.clothes.find(
+    (item) => item.id === clothes[index].id
+  );
 
-  const cart = clothes[index];
-  user.clothes.push(cart);
+  if (clotheExist) {
+    clotheExist.count++;
+  } else {
+    clothes[index].count = 1;
+    user.clothes.push(clothes[index]);
+  }
 
   const indexUser = users.findIndex((item) => item.username === user.username);
   users[indexUser] = user;
