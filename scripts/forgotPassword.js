@@ -27,5 +27,5 @@ form.addEventListener("submit", (e) => {
   userExists.password = newPassword;
   localStorage.setItem("users", JSON.stringify(users));
   toastr.success("Password changed successfully");
-  setTimeout(() => (window.location.href = "login.html"), 3000);
+  setTimeout(() => (window.location.href = "views/login.html"), 3000);
 });

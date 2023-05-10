@@ -51,5 +51,5 @@ function addCart(index) {
 
 logout.addEventListener("click", () => {
   localStorage.removeItem("user");
-  window.location.href = "login.html";
+  window.location.href = "views/login.html";
 });
