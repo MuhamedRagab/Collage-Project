@@ -6,7 +6,7 @@ let clothes = [];
 window.addEventListener("load", () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
-  if (!user) location.href = "views/login.html";
+  if (!user) location.href = "/views/login.html";
 
   fetch("../clothes.json")
     .then((res) => res.json())
@@ -55,5 +55,5 @@ function addCart(index) {
 
 logout.addEventListener("click", () => {
   localStorage.removeItem("user");
-  window.location.href = "views/login.html";
+  window.location.href = "/views/login.html";
 });

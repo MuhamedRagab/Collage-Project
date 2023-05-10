@@ -8,7 +8,7 @@ let user = JSON.parse(localStorage.getItem("user"));
 let clothes = [];
 
 window.addEventListener("load", () => {
-  if (!user) location.href = "views/login.html";
+  if (!user) location.href = "/views/login.html";
 
   clothes = user.clothes;
   username.innerHTML = user ? user.fullName : "Guest";
@@ -82,7 +82,7 @@ function removeCart(index) {
 
 logout.addEventListener("click", () => {
   localStorage.removeItem("user");
-  window.location.href = "views/login.html";
+  window.location.href = "/views/login.html";
 });
 
 function getCount(index) {
