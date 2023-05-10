@@ -38,7 +38,7 @@ signupForm.addEventListener("submit", (e) => {
   localStorage.setItem("user", JSON.stringify(user));
 
   // redirect to login page
-  window.location.href = "views/index.html";
+  window.location.href = "views";
 });
 
 // Login form submit
@@ -59,5 +59,5 @@ loginForm.addEventListener("submit", (e) => {
 
   localStorage.setItem("user", JSON.stringify(user));
   // redirect to home page
-  window.location.href = "views/index.html";
+  window.location.href = "views";
 });
