@@ -20,8 +20,13 @@ function calcTotal() {
   total.innerHTML = totalAll.toFixed(2);
 }
 
+function calcCount() {
+  const countAll = clothes.reduce((acc, item) => acc + +item.count, 0);
+  count.innerHTML = countAll;
+}
+
 const renderData = () => {
-  count.innerHTML = clothes.length;
+  calcCount();
   calcTotal();
 
   container.innerHTML = "";
