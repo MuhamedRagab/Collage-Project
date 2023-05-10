@@ -5,8 +5,9 @@ let clothes = [];
 
 window.addEventListener("load", () => {
   const user = JSON.parse(localStorage.getItem("user"));
-
   if (!user) location.href = "/views/login.html";
+
+  username.innerHTML = user.fullName || user.username;
 
   fetch("../clothes.json")
     .then((res) => res.json())

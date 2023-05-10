@@ -11,12 +11,15 @@ window.addEventListener("load", () => {
   if (!user) location.href = "/views/login.html";
 
   clothes = user.clothes;
-  username.innerHTML = user ? user.fullName : "Guest";
+  username.innerHTML = user.fullName || user.username;
   renderData();
 });
 
 function calcTotal() {
-  const totalAll = clothes.reduce((acc, item) => acc + item.price, 0);
+  const totalAll = clothes.reduce(
+    (acc, item) => acc + item.price * item.count,
+    0
+  );
   total.innerHTML = totalAll.toFixed(2);
 }
 
@@ -42,7 +45,10 @@ const renderData = () => {
               <h2 class="my-card__title">${item.title}</h2>
               <h3 class="my-card__price">Price: $${item.price}</h3>
               <h3 class="my-card__price">
-                Count: <input type='number' class="input__count-${item.id}" value='${item.count}' onchange="changeProductCount('${i}', '${item.id}')" />
+                Count: <input type='number' class="input__count-${item.id}" value='${item.count}' onchange="changeProductCount('${i}', '${item.id}')"
+                min='1'
+                max='10'
+                />
               </h3>
               <button class="my-card__button" onclick="removeCart('${i}')">Remove</button>
             </div>
