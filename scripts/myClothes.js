@@ -4,7 +4,9 @@ const logout = document.querySelector(".logout");
 const count = document.getElementById("count");
 const total = document.getElementById("total");
 
+const users = JSON.parse(localStorage.getItem("users"));
 let user = JSON.parse(localStorage.getItem("user"));
+const currUser = users.find((item) => item.username === user.username);
 let clothes = [];
 
 window.addEventListener("load", () => {
@@ -47,7 +49,6 @@ const renderData = () => {
               <h3 class="my-card__price">
                 Count: <input type='number' class="input__count-${item.id}" value='${item.count}' onchange="changeProductCount('${i}', '${item.id}')"
                 min='1'
-                max='10'
                 />
               </h3>
               <button class="my-card__button" onclick="removeCart('${i}')">Remove</button>
@@ -58,45 +59,41 @@ const renderData = () => {
   });
 };
 
-function changeProductCount(index, id) {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const users = JSON.parse(localStorage.getItem("users"));
-
-  const indexUser = users.findIndex((item) => item.username === user.username);
-  const count = document.querySelector(`.input__count-${id}`).value;
-  const indexClothes = clothes.findIndex(
-    (item) => item.id === clothes[index].id
-  );
-
-  clothes[indexClothes].count = count;
-  users[indexUser].clothes = clothes;
-
+function saveData() {
   localStorage.setItem("users", JSON.stringify(users));
-  localStorage.setItem("user", JSON.stringify(users[indexUser]));
-
+  localStorage.setItem("user", JSON.stringify(currUser));
   renderData();
 }
 
+function changeProductCount(index, id) {
+  const count = document.querySelector(`.input__count-${id}`).value;
+
+  clothes[index].count = count;
+  currUser.clothes = clothes;
+
+  saveData();
+}
+
+function pay() {
+  if (!currUser.clothes.length) return alert("Your cart is empty!");
+
+  let isWantPay = confirm("Are you sure you want to pay?");
+  if (!isWantPay) return;
+
+  currUser.clothes = clothes = [];
+
+  alert("Thank you for your purchase");
+  saveData();
+}
+
 function removeCart(index) {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const users = JSON.parse(localStorage.getItem("users"));
-
-  const indexUser = users.findIndex((item) => item.username === user.username);
   clothes.splice(index, 1);
-  users[indexUser].clothes = clothes;
+  currUser.clothes = clothes;
 
-  localStorage.setItem("users", JSON.stringify(users));
-  localStorage.setItem("user", JSON.stringify(users[indexUser]));
-
-  renderData();
+  saveData();
 }
 
 logout.addEventListener("click", () => {
   localStorage.removeItem("user");
   window.location.href = "/views/login.html";
 });
-
-function getCount(index) {
-  const count = clothes.filter((item) => item.id === clothes[index].id).length;
-  return count;
-}

@@ -33,16 +33,15 @@ const renderData = () => {
 function addCart(index) {
   const user = JSON.parse(localStorage.getItem("user"));
   const users = JSON.parse(localStorage.getItem("users"));
+  let myClothe = clothes[index];
 
-  const clotheExist = user.clothes.find(
-    (item) => item.id === clothes[index].id
-  );
+  const clotheExist = user.clothes.find((item) => item.id === myClothe.id);
 
   if (clotheExist) {
     clotheExist.count++;
   } else {
-    clothes[index].count = 1;
-    user.clothes.push(clothes[index]);
+    myClothe.count = 1;
+    user.clothes.push(myClothe);
   }
 
   const indexUser = users.findIndex((item) => item.username === user.username);
